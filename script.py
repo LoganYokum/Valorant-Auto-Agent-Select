@@ -1,14 +1,27 @@
 import pyautogui
 import keyboard
 import time
+from gui import GUI
 
 # Get rid of the fail safe your system has for automated mouse movement
 pyautogui.FAILSAFE = False
 # Change this to change the delay between each click in seconds
-delay_seconds = 0.5
+DELAY_SECONDS = 0.5
 # Change this to change the delay between each click in seconds on the agent selection screen
-delay_seconds_agent = 0.05
+DELAY_SECONDS_AGENT = 0.05
 
+def click_agent():
+    # Move the mouse to the agent's coordinates
+    pyautogui.moveTo(agent_x, agent_y, DELAY_SECONDS_AGENT)
+    # Perform a single click
+    pyautogui.click()
+    
+def click_lock_in():
+    # Move the mouse to the lock in button's coordinates
+    pyautogui.moveTo(1000, 875, DELAY_SECONDS_AGENT)
+    # Perform a single click
+    pyautogui.click()
+    
 # Dictionary of agents and their pixel coordinates hard coded. Because the game updates this changes often.
 # If I wrote a function to find the coordinates of the agents, it would be fruitless as the game updates the coordinates of the agents.
 agent_dictionary = {
@@ -34,37 +47,28 @@ agent_dictionary = {
     "gekko": [1209,1010],
     "harbor": [1293,1010],
     }
-agent = input("Enter the agent you want to select: ")
+gui = GUI()
+# agent = input("Enter the agent you want to select: ")
 
 while True:
     try:
-        agent_x, agent_y = agent_dictionary[agent.lower()]
+        agent_x, agent_y = agent_dictionary[gui.agent_input.lower()]
         break
     except KeyError:
-        agent = input("Agent not found. Please try again or type exit to quit the program: ")
-        if agent.lower() == "exit":
+        print("Agent not found. Please try again or type exit to quit the program: ")
+        time.sleep(3)
+        gui.on_button_clicked_agent
+        if gui.agent_input.lower() == "exit":
             exit()
-    
-
-def click_agent():
-    # Move the mouse to the agent's coordinates
-    pyautogui.moveTo(agent_x, agent_y, delay_seconds_agent)
-    # Perform a single click
-    pyautogui.click()
-    
-def click_lock_in():
-    # Move the mouse to the lock in button's coordinates
-    pyautogui.moveTo(1000, 875, delay_seconds_agent  )
-    # Perform a single click
-    pyautogui.click()
-    
-while True:
-    # Delay for 5 seconds
-    time.sleep(delay_seconds)
-    print("HOLD press space on the keyboard")
-    # Check if the space key is pressed
-    if keyboard.is_pressed('space'):
-        click_agent()
-        click_lock_in()
-        break
+            
+if(gui.response_value):
+    while True:
+        # Delay for 5 seconds
+        time.sleep(DELAY_SECONDS)
+        print("HOLD press space on the keyboard")
+        # Check if the space key is pressed
+        if keyboard.is_pressed('space'):
+            click_agent()
+            click_lock_in()
+            break
 
