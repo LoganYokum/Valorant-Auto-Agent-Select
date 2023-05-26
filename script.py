@@ -39,7 +39,13 @@ agent_x, agent_y = agent_dictionary["jett"]
 
 def click_agent():
     # Move the mouse to the agent's coordinates
-    pyautogui.moveTo(agent_x, agent_y, delay_seconds)
+    pyautogui.moveTo(agent_x, agent_y, delay_seconds_agent)
+    # Perform a single click
+    pyautogui.click()
+    
+def click_lock_in():
+    # Move the mouse to the lock in button's coordinates
+    pyautogui.moveTo(1000, 875, delay_seconds_agent  )
     # Perform a single click
     pyautogui.click()
     
@@ -50,5 +56,6 @@ while True:
     # Check if the space key is pressed
     if keyboard.is_pressed('space'):
         click_agent()
+        click_lock_in()
         break
 
