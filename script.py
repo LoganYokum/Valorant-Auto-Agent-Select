@@ -7,7 +7,7 @@ pyautogui.FAILSAFE = False
 # Change this to change the delay between each click in seconds
 delay_seconds = 0.5
 # Change this to change the delay between each click in seconds on the agent selection screen
-delay_seconds_agent = 0.1
+delay_seconds_agent = 0.05
 
 # Dictionary of agents and their pixel coordinates hard coded. Because the game updates this changes often.
 # If I wrote a function to find the coordinates of the agents, it would be fruitless as the game updates the coordinates of the agents.
@@ -34,8 +34,17 @@ agent_dictionary = {
     "gekko": [1209,1010],
     "harbor": [1293,1010],
     }
-# Change the name here for the agent you want to click
-agent_x, agent_y = agent_dictionary["jett"]
+agent = input("Enter the agent you want to select: ")
+
+while True:
+    try:
+        agent_x, agent_y = agent_dictionary[agent.lower()]
+        break
+    except KeyError:
+        agent = input("Agent not found. Please try again or type exit to quit the program: ")
+        if agent.lower() == "exit":
+            exit()
+    
 
 def click_agent():
     # Move the mouse to the agent's coordinates
