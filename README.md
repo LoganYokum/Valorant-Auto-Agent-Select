@@ -1,5 +1,5 @@
 # ValorantAutoSelect
-Written in Python3
+Written in Python3 and for displays of 1920 x 1080
 
 ## What is this?
 This is a simple script that will automatically select the agent you want to play in Valorant. It will also automatically lock in the agent for you.
@@ -16,3 +16,5 @@ In a command prompt, run the following command:
 The program will run until you press and HOLD the space key. Upon this, the program will autoselect to the agent you selected.
 
 You can change the agent you wish to play, the speed it pick the agent, and the speed it checks if the key is pressed. You can do this by editing the script.py values in the file.
+
+IF YOURE DISPLAY IS NOT 1920 x 1080, YOU MUST MODIFY THE PIXEL VALUES IN THE PROGRAM TO YOUR DISPLAY
