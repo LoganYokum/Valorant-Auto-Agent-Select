@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-
+import time
 class GUI:
     def __init__(self):
         self.app = QtWidgets.QApplication([])
@@ -10,51 +10,79 @@ class GUI:
         self.window.resize(300, 200)
         
         # Create a QLabel for static text
-        self.label = QtWidgets.QLabel("Enter Agent:", self.window)
+        self.label = QtWidgets.QLabel("Select Agent:", self.window)
         self.label.setGeometry(50, 50, 200, 30)
         
-        # Create a QLineEdit (input box)
-        self.input_box = QtWidgets.QLineEdit(self.window)
-        self.input_box.setGeometry(150, 50, 100, 30)
+        # Create a QComboBox for agent selection
+        self.agent_combobox = QtWidgets.QComboBox(self.window)
+        self.agent_combobox.setGeometry(150, 50, 100, 30)
+        
+        # Add agent options to the combobox
+        self.agent_combobox.addItem("Astra")
+        self.agent_combobox.addItem("Breach")
+        self.agent_combobox.addItem("Brimstone")
+        self.agent_combobox.addItem("Chamber")
+        self.agent_combobox.addItem("Cypher")
+        self.agent_combobox.addItem("Fade")
+        self.agent_combobox.addItem("Jett")
+        self.agent_combobox.addItem("Kayo")
+        self.agent_combobox.addItem("Killjoy")
+        self.agent_combobox.addItem("Neon")
+        self.agent_combobox.addItem("Omen")
+        self.agent_combobox.addItem("Phoenix")
+        self.agent_combobox.addItem("Raze")
+        self.agent_combobox.addItem("Reyna")
+        self.agent_combobox.addItem("Sage")
+        self.agent_combobox.addItem("Skye")
+        self.agent_combobox.addItem("Sova")
+        self.agent_combobox.addItem("Viper")
+        self.agent_combobox.addItem("Yoru")
+        self.agent_combobox.addItem("Gekko")
+        self.agent_combobox.addItem("Harbor")
 
-        # Create a QPushButton (button)
-        self.button = QtWidgets.QPushButton("Lock in agent", self.window)
-        self.button.setGeometry(50, 100, 200, 30)
-        self.button.clicked.connect(self.on_button_clicked_agent)
-        self.agent_input = ""
-                
+        # Create a QLabel for static text
+        self.label = QtWidgets.QLabel("Select keybind:", self.window)
+        self.label.setGeometry(50, 100, 200, 30)
+        
+        # Create a QComboBox for agent selection
+        self.keybind_combobox = QtWidgets.QComboBox(self.window)
+        self.keybind_combobox.setGeometry(150, 100, 100, 30)
+        
+        # Add agent options to the combobox
+        self.keybind_combobox.addItem("space")
+        self.keybind_combobox.addItem("enter")
+        self.keybind_combobox.addItem("tab")
+        self.keybind_combobox.addItem("shift")        
+        
         # Create a QPushButton (button)
         self.button = QtWidgets.QPushButton("Run script", self.window)
         self.button.setGeometry(50, 150, 200, 30)
-        self.button.clicked.connect(self.on_button_clicked_script)
-        self.response_value = False # dont run script until button is clicked
+        self.button.clicked.connect(self.on_button_clicked_agent_and_script)
+        self.agent_input = "Astra" # default agent
+        self.response_value = False  # don't run script until button is clicked
         
         self.window.show()
         self.app.exec_()
-
-    def on_button_clicked_agent(self):
-        # Retrieve the text entered by the user
-        self.agent_input = self.input_box.text()
-        self.input_box.clear()
-        print("User input:", self.agent_input)
-    def on_button_clicked_script(self):
+        
+    def on_button_clicked_agent_and_script(self):
+        # Retrieve the selected agent from the combobox
+        self.agent_input = self.agent_combobox.currentText()
+        # Retrieve the selected keybind from the combobox
+        self.keybind_input = self.keybind_combobox.currentText()
+        # Set the response value to True to run the script
         self.response_value = True
+        self.on_success()
         self.window.close()
         self.app.quit()
+        
     def on_success(self):
         # Create and display a QMessageBox as the response window
         response_box = QtWidgets.QMessageBox()
         response_box.setWindowTitle("Response")
-        response_box.setText("Agent successfully locked in")
+        response_box.setText("Hold the key specified to begin the auto select process: ")
+        response_box.setInformativeText(self.keybind_input)
         response_box.setIcon(QtWidgets.QMessageBox.Information)
         response_box.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        response_box.show()
         response_box.exec_()
-    def on_fail(self):
-        # Create and display a QMessageBox as the response window
-        response_box = QtWidgets.QMessageBox()
-        response_box.setWindowTitle("Response")
-        response_box.setText("Agent not found. Please try again or type exit to quit the program")
-        response_box.setIcon(QtWidgets.QMessageBox.Information)
-        response_box.setStandardButtons(QtWidgets.QMessageBox.Ok)
-        response_box.exec_()
-
+        

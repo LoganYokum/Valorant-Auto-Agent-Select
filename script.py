@@ -47,28 +47,17 @@ agent_dictionary = {
     "gekko": [1209,1010],
     "harbor": [1293,1010],
     }
-gui = GUI()
-# agent = input("Enter the agent you want to select: ")
+gui = GUI() # create the GUI and call it
 
-while True:
-    try:
-        agent_x, agent_y = agent_dictionary[gui.agent_input.lower()]
-        break
-    except KeyError:
-        print("Agent not found. Please try again or type exit to quit the program: ")
-        time.sleep(3)
-        gui.on_button_clicked_agent
-        if gui.agent_input.lower() == "exit":
-            exit()
+agent_x, agent_y = agent_dictionary[gui.agent_input.lower()]
             
 if(gui.response_value):
     while True:
         # Delay for 5 seconds
         time.sleep(DELAY_SECONDS)
-        print("HOLD press space on the keyboard")
         # Check if the space key is pressed
-        if keyboard.is_pressed('space'):
+        if keyboard.is_pressed(gui.keybind_input):
             click_agent()
             click_lock_in()
-            break
+            break 
 
