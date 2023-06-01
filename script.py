@@ -18,34 +18,34 @@ def click_agent():
     
 def click_lock_in():
     # Move the mouse to the lock in button's coordinates
-    pyautogui.moveTo(1000, 875, DELAY_SECONDS_AGENT)
+    pyautogui.moveTo(955, 792, DELAY_SECONDS_AGENT)
     # Perform a single click
     pyautogui.click()
     
 # Dictionary of agents and their pixel coordinates hard coded. Because the game updates this changes often.
 # If I wrote a function to find the coordinates of the agents, it would be fruitless as the game updates the coordinates of the agents.
 agent_dictionary = {
-    "astra": [580,931],
-    "breach": [658,931],
-    "brimstone": [732,931],
-    "chamber": [789,931],
-    "cypher": [805,931],
-    "fade": [959,931],
-    "jett": [1200,931],
-    "kayo": [1265,931],
-    "killjoy": [1346,931],
-    "neon": [578,1009],
-    "omen": [657,1009],
-    "phoenix": [732,1010],
+    "astra": [580,926],
+    "breach": [658,926],
+    "brimstone": [732,926],
+    "chamber": [789,926],
+    "cypher": [805,926],
+    "fade": [959,926],
+    "gekko": [1039,926],
+    "harbor": [1113,926],
+    "jett": [1212,926],
+    "kayo": [1265,926],
+    "killjoy": [1346,926],
+    "neon": [535,1009],
+    "omen": [625,1009],
+    "phoenix": [710,1010],
     "raze": [811,1010],
-    "reyna": [886,1010],
+    "reyna": [877,1010],
     "sage": [962,1010],
     "skye": [1038,1010],
     "sova": [1113,1010],
     "viper": [1190,1010],
-    "yoru": [1265,1010],
-    "gekko": [1039,931],
-    "harbor": [1113,931],
+    "yoru": [1297,1010]
     }
 gui = GUI() # create the GUI and call it
 
