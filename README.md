@@ -7,8 +7,10 @@ This is a simple script that will automatically select the agent you want to pla
 ## How to use
 Download Python3 from https://www.python.org/downloads/ (I am using version 3.11.3) from the time I created this script.
 
+GO INTO THE WORKING DIRECTORY!
+
 Make sure you have the required modules installed. You can do this by running the following command in your terminal (make sure it has executable permissions):
-```./requirements.sh```
+```./requirements.sh``` or for windows it is ```bash requirements.sh```
 
 In a command prompt, run the following command:
 ```python3 script.py```
